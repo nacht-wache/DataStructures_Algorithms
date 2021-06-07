@@ -4,7 +4,7 @@
 #include <iostream>
 
 struct Node {
-  Node *prev = nullptr;
+  Node* prev = nullptr;
   int key = 0;
 
   Node() = default;
@@ -12,18 +12,18 @@ struct Node {
 };
 
 class SLL_u {
-private:
-  Node *head = nullptr;
+ private:
+  Node* head = nullptr;
 
-public:
+ public:
   SLL_u() = default;
-  SLL_u(const SLL_u &list);
+  SLL_u(const SLL_u& list);
   ~SLL_u();
   void insert(int value);
 
   void del_val(int value);
-  void del_ptr(Node *node);
-  Node *find(int key);
+  void del_ptr(Node* node);
+  Node* find(int key);
   bool empty();
 };
 
