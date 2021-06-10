@@ -1,14 +1,14 @@
-#include <Stack.h>
+#include <ListBased.h>
 
 int main() {
   try {
-	Stack<int> s = {1, 2};
+	ListBased<int> s = {1, 2};
 	std::cout << s.pop() << ' ';
 	std::cout << s.pop() << ' ';
 	s.push(1);
 	std::cout << s.pop() << ' ';
-	
-	Stack<std::string> string_stack = {"abc", "aaa", "aka"};
+
+	ListBased<std::string> string_stack = {"abc", "aaa", "aka"};
 	std::cout << string_stack.pop() << ' ';
 	std::cout << string_stack.pop() << ' ';
 	string_stack.push("abc");

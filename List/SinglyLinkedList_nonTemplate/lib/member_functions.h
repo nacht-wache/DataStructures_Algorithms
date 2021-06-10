@@ -11,19 +11,19 @@ struct Node {
   ~Node() = default;
 };
 
-class SLL_u {
+class SinglyLinkedList {
  private:
   Node* head = nullptr;
 
  public:
-  SLL_u() = default;
-  SLL_u(const SLL_u& list);
-  ~SLL_u();
+  SinglyLinkedList() = default;
+  SinglyLinkedList(const SinglyLinkedList& list);
+  ~SinglyLinkedList();
   void insert(int value);
 
   void del_val(int value);
   void del_ptr(Node* node);
-  Node* find(int key);
+  //Node* find(int key);
   bool empty();
 };
 

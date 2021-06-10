@@ -11,17 +11,17 @@ struct Node {
 };
 
 template<typename T>
-class Stack {
+class ListBased {
  private:
   Node<T>* top = nullptr;
 
  public:
-  Stack() = default;
-  ~Stack();
-  Stack<T>(const std::initializer_list<T>& lst);
+  ListBased() = default;
+  ~ListBased();
+  ListBased<T>(const std::initializer_list<T>& lst);
 
-  Stack(const Stack<T>& value) = delete;
-  Stack<T>& operator=(const Stack<T>& value) = delete;
+  ListBased(const ListBased<T>& value) = delete;
+  ListBased<T>& operator=(const ListBased<T>& value) = delete;
 
   T pop();
   void push(const T& value);
@@ -29,7 +29,7 @@ class Stack {
 };
 
 template<typename T>
-Stack<T>::Stack(const std::initializer_list<T>& lst) {
+ListBased<T>::ListBased(const std::initializer_list<T>& lst) {
   Node<T>* ptr;
   for (typename std::initializer_list<T>::iterator it = lst.begin(); it != lst.end(); ++it) {
 	try {
@@ -45,7 +45,7 @@ Stack<T>::Stack(const std::initializer_list<T>& lst) {
 }
 
 template<typename T>
-T Stack<T>::pop() {
+T ListBased<T>::pop() {
   if (empty()) {
 	throw std::out_of_range("Underflow");
   }
@@ -64,7 +64,7 @@ T Stack<T>::pop() {
 }
 
 template<typename T>
-void Stack<T>::push(const T& value) {
+void ListBased<T>::push(const T& value) {
   Node<T>* ptr;
   try {
 	ptr = new Node<T>;
@@ -78,7 +78,7 @@ void Stack<T>::push(const T& value) {
 }
 
 template<typename T>
-Stack<T>::~Stack() {
+ListBased<T>::~ListBased() {
   if (empty()) {
 	return;
   }
@@ -92,7 +92,7 @@ Stack<T>::~Stack() {
 }
 
 template<typename T>
-bool Stack<T>::empty() {
+bool ListBased<T>::empty() {
   if (top == nullptr) {
 	return true;
   }

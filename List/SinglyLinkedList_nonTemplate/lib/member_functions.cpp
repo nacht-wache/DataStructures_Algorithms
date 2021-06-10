@@ -1,17 +1,6 @@
-#include "SLL_u.h"
+#include "SinglyLinkedList.h"
 
-SLL_u::~SLL_u() {
-  if (!empty()) {
-	while (head->prev != nullptr) {
-	  Node* temp = head->prev;
-	  delete head;
-	  head = temp;
-	}
-  }
-  delete head;
-}
-
-void SLL_u::insert(int key) {
+void SinglyLinkedList::insert(int key) {
   try {
 	Node* new_node = new Node;
 	new_node->prev = head;
@@ -22,7 +11,7 @@ void SLL_u::insert(int key) {
   }
 }
 
-Node* SLL_u::find(int key) {
+/*Node* SinglyLinkedList::find(int key) {
   if (empty()) {
 	return nullptr;
   }
@@ -34,9 +23,9 @@ Node* SLL_u::find(int key) {
 	return nullptr;
   }
   return ptr;
-}
+}*/
 
-void SLL_u::del_val(int key) {
+void SinglyLinkedList::del_val(int key) {
   if (empty()) {
 	return;
   }
@@ -48,11 +37,11 @@ void SLL_u::del_val(int key) {
 	return;
   }
 
-  while (ptr->prev != nullptr && ptr->prev->key != key) {// find pointer to next Node
-	ptr = ptr->prev;                                     // after the Node with a key
+  while (ptr->prev != nullptr && ptr->prev->key != key) {	// find pointer to next Node
+	ptr = ptr->prev;                                     	// after the Node with a key
   }
-  if (ptr->prev != nullptr && ptr->prev->key == key) {// standard search
-	Node* temp = ptr->prev->prev;                     // shirt-circuit evaluation used
+  if (ptr->prev != nullptr && ptr->prev->key == key) {		// standard search
+	Node* temp = ptr->prev->prev;                     		// shirt-circuit evaluation used
 	delete ptr->prev;
 	ptr->prev = temp;
   } else if (head->key == key) {// single-Node list
@@ -61,7 +50,7 @@ void SLL_u::del_val(int key) {
   }
 }
 
-void SLL_u::del_ptr(Node* node) {
+void SinglyLinkedList::del_ptr(Node* node) {
   if (node == nullptr) {
 	throw std::runtime_error("UB: argument with 'nullptr' key in the del_ptr function");
   }
@@ -81,7 +70,7 @@ void SLL_u::del_ptr(Node* node) {
   }
 }
 
-bool SLL_u::empty() {
+bool SinglyLinkedList::empty() {
   if (head == nullptr) {
 	return true;
   }

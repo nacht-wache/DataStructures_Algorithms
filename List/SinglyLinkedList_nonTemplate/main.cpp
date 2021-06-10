@@ -1,8 +1,8 @@
-#include <SLL_u.h>
+#include <SinglyLinkedList.h>
 #include <iostream>
 
 int main() {
-  SLL_u list;
+  SinglyLinkedList list;
   for (int i = 0; i < 1000; ++i) {
 	list.insert(i);
   }
