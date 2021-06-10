@@ -11,17 +11,17 @@ struct Node {
 };
 
 template<typename T>
-class ListBased {
+class ListBased_T {
  private:
   Node<T>* top = nullptr;
 
  public:
-  ListBased() = default;
-  ~ListBased();
-  ListBased<T>(const std::initializer_list<T>& lst);
+  ListBased_T() = default;
+  ~ListBased_T();
+  ListBased_T<T>(const std::initializer_list<T>& lst);
 
-  ListBased(const ListBased<T>& value) = delete;
-  ListBased<T>& operator=(const ListBased<T>& value) = delete;
+  ListBased_T(const ListBased_T<T>& value) = delete;
+  ListBased_T<T>& operator=(const ListBased_T<T>& value) = delete;
 
   T pop();
   void push(const T& value);
@@ -29,7 +29,7 @@ class ListBased {
 };
 
 template<typename T>
-ListBased<T>::ListBased(const std::initializer_list<T>& lst) {
+ListBased_T<T>::ListBased_T(const std::initializer_list<T>& lst) {
   Node<T>* ptr;
   for (typename std::initializer_list<T>::iterator it = lst.begin(); it != lst.end(); ++it) {
 	try {
@@ -45,7 +45,7 @@ ListBased<T>::ListBased(const std::initializer_list<T>& lst) {
 }
 
 template<typename T>
-T ListBased<T>::pop() {
+T ListBased_T<T>::pop() {
   if (empty()) {
 	throw std::out_of_range("Underflow");
   }
@@ -64,7 +64,7 @@ T ListBased<T>::pop() {
 }
 
 template<typename T>
-void ListBased<T>::push(const T& value) {
+void ListBased_T<T>::push(const T& value) {
   Node<T>* ptr;
   try {
 	ptr = new Node<T>;
@@ -78,7 +78,7 @@ void ListBased<T>::push(const T& value) {
 }
 
 template<typename T>
-ListBased<T>::~ListBased() {
+ListBased_T<T>::~ListBased_T() {
   if (empty()) {
 	return;
   }
@@ -92,7 +92,7 @@ ListBased<T>::~ListBased() {
 }
 
 template<typename T>
-bool ListBased<T>::empty() {
+bool ListBased_T<T>::empty() {
   if (top == nullptr) {
 	return true;
   }
