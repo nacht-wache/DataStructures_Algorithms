@@ -10,6 +10,7 @@ SinglyLinkedList::SinglyLinkedList(const std::initializer_list<int>& lst) {
 	}
   } catch (std::bad_alloc& e) {
 	std::cerr << "Can't allocate memory for the new Node of an initializer_list\n";
+	delete new_node;
 	throw;
   }
 }
