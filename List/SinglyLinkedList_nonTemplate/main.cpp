@@ -1,4 +1,4 @@
-#include <SinglyLinkedList.h>
+#include <member_functions.h>
 #include <iostream>
 
 int main() {
@@ -7,10 +7,9 @@ int main() {
 	list.insert(i);
   }
 
-  Node* del = list.find(999);
-  list.del_ptr(del);
-  int find = 0;
-  if (list.find(find) != nullptr) {
-	std::cout << list.find(find) << ' ' << list.find(find)->key;
-  }
+  list.del_val(30);
+  std::cout << list.find(30); 							// UB: nullptr
+  SinglyLinkedList list_2 = {1, 2, 3, 4};
+  list_2.del_ptr(list_2.find(3));
+  std::cout << list_2.find(3);							// UB: nullptr
 }

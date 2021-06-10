@@ -17,13 +17,14 @@ class SinglyLinkedList {
 
  public:
   SinglyLinkedList() = default;
+  SinglyLinkedList(const std::initializer_list<int>& lst);
   SinglyLinkedList(const SinglyLinkedList& list);
   ~SinglyLinkedList();
   void insert(int value);
 
   void del_val(int value);
   void del_ptr(Node* node);
-  //Node* find(int key);
+  Node* find(int key);
   bool empty();
 };
 

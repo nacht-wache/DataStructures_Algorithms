@@ -1,4 +1,4 @@
-#include "SinglyLinkedList.h"
+#include "member_functions.h"
 
 void SinglyLinkedList::insert(int key) {
   try {
@@ -7,13 +7,13 @@ void SinglyLinkedList::insert(int key) {
 	new_node->key = key;
 	head = new_node;
   } catch (std::bad_alloc& e) {
-	std::cerr << e.what() << ' ' << "Some issues on insertion\n";
+	std::cerr << e.what() << ' ' << "Can't allocate memory on insertion\n";
   }
 }
 
-/*Node* SinglyLinkedList::find(int key) {
-  if (empty()) {
-	return nullptr;
+Node* SinglyLinkedList::find(int key) {							// should be rewritten
+  if (empty()) {												// it's a mistake to return a Node*
+	return nullptr;												// Node should be private
   }
   Node* ptr = head;
   while (ptr->key != key && ptr->prev != nullptr) {
@@ -23,7 +23,7 @@ void SinglyLinkedList::insert(int key) {
 	return nullptr;
   }
   return ptr;
-}*/
+}
 
 void SinglyLinkedList::del_val(int key) {
   if (empty()) {
@@ -37,14 +37,14 @@ void SinglyLinkedList::del_val(int key) {
 	return;
   }
 
-  while (ptr->prev != nullptr && ptr->prev->key != key) {	// find pointer to next Node
-	ptr = ptr->prev;                                     	// after the Node with a key
+  while (ptr->prev != nullptr && ptr->prev->key != key) {	// find a ptr to a Node with a ptr
+	ptr = ptr->prev;                                     	// to the Node with the key
   }
   if (ptr->prev != nullptr && ptr->prev->key == key) {		// standard search
 	Node* temp = ptr->prev->prev;                     		// shirt-circuit evaluation used
 	delete ptr->prev;
 	ptr->prev = temp;
-  } else if (head->key == key) {// single-Node list
+  } else if (head->key == key) {							// single-Node list
 	delete head;
 	head = nullptr;
   }
@@ -55,13 +55,13 @@ void SinglyLinkedList::del_ptr(Node* node) {
 	throw std::runtime_error("UB: argument with 'nullptr' key in the del_ptr function");
   }
   Node* ptr = head;
-  if (head->prev != nullptr && head == node) {//delete head-key
+  if (head->prev != nullptr && head == node) {				// delete head-key
 	head = head->prev;
 	delete ptr;
 	return;
   }
 
-  while (ptr->prev != nullptr && ptr->prev != node) {
+  while (ptr->prev != nullptr && ptr->prev != node) {		// same as for del_val
 	ptr = ptr->prev;
   }
   if (ptr->prev == node) {
@@ -70,7 +70,7 @@ void SinglyLinkedList::del_ptr(Node* node) {
   }
 }
 
-bool SinglyLinkedList::empty() {
+bool SinglyLinkedList::empty() {							//helper function
   if (head == nullptr) {
 	return true;
   }
