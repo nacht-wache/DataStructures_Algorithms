@@ -1,9 +1,10 @@
-#include <member_functions.h>
+#include <SinglyLinkedList.h>
 
 SinglyLinkedList::SinglyLinkedList(const std::initializer_list<int>& lst) {
+  Node* new_node;
   try {
 	for (auto value : lst) {
-	  Node* new_node = new Node;
+	  new_node = new Node;
 	  new_node->key = value;
 	  new_node->prev = head;
 	  head = new_node;

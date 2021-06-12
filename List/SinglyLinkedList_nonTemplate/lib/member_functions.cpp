@@ -1,4 +1,4 @@
-#include "member_functions.h"
+#include "SinglyLinkedList.h"
 
 void SinglyLinkedList::insert(int key) {
   try {
