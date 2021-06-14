@@ -3,16 +3,19 @@
 
 #include <iostream>
 
-struct Node {
-  Node* prev = nullptr;
-  int key = 0;
-
-  Node() = default;
-  ~Node() = default;
-};
-
 class SinglyLinkedList {
  private:
+
+  struct Node {
+	Node* prev = nullptr;
+	int key = 0;
+
+	Node() = delete;
+	explicit Node(int key, Node* prev = nullptr)
+		: prev(prev), key(key) {}
+	~Node() = default;
+  };
+
   Node* head = nullptr;
 
  public:
