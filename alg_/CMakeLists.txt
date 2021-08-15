@@ -1,0 +1,2 @@
+add_subdirectory(algms)
+add_subdirectory(alg_test)
