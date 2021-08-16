@@ -1,22 +1,14 @@
 #include "task.hpp"
-/*
-8
-5 3 4 4 2 5 5 5 5
 
- 6
- 1 1 2 3 2 6
- */
-
-void task_alg(const std::vector<ll>& numbers) {
+std::vector<ll> task_alg(const std::vector<ll>& numbers) {
   assert(numbers.size() < INT16_MAX);
-  std::vector<ll> result(1, ARRAY_LIMIT);
+  std::vector<ll> result(1, INT64_MIN);
   result.push_back(numbers[0]);
   result.resize(numbers.size() + 1, INT64_MAX);
 
   std::map<ll, ll> count;
   //храним -1, т.к. distance не будет равен -1 (assert)
   std::vector<ll> dist_to_prev(result.size(), -1);
-  dist_to_prev[1] = 1;
 
   for (auto num = std::next(numbers.begin()); num != numbers.end(); ++num) {
 
@@ -40,26 +32,29 @@ void task_alg(const std::vector<ll>& numbers) {
 	}
   }
 
-  for (auto it = std::next(dist_to_prev.begin()); *it != -1; ++it) {
-	auto print = numbers.begin();
-	std::advance(print, *it);
-	std::cout << *print << ' ';
+  std::vector<ll> to_return;
+  for(auto& i : dist_to_prev) {
+    if(i != -1) {
+      to_return.push_back(i);
+    }
   }
+  return to_return;
 }
 
-void task() {
-  size_t number_count;
-  std::cin >> number_count;
-  std::vector<ll> numbers(number_count);
-  for (auto& number : numbers) {
-	std::cin >> number;
-  }
-  task_alg(numbers);
-}
+std::vector<ll> task(size_t number_count, ll q, ll w, ll e, ll r, ll t) {
+  std::vector<ll> numbers;
+  numbers.reserve(number_count);
+  numbers.push_back(q);
+  numbers.push_back(w);
+  numbers.push_back(e);
+  numbers.push_back(r);
+  numbers.push_back(t);
+  /*numbers.push_back(y);
+  numbers.push_back(u);
+  numbers.push_back(i);
+  numbers.push_back(o);
+  numbers.push_back(p);*/
 
-void adder() {
-  int a, b;
-  std::cin >> a >> b;
-  std::cout << a + b;
+  return task_alg(numbers);
 }
 

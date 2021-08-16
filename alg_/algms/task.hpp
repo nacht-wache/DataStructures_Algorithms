@@ -9,10 +9,8 @@
 
 using ll = long long;
 
-void task_alg(const std::vector<ll>& numbers);
+std::vector<ll> task_alg(const std::vector<ll>& numbers);
 
-void task();
-
-void adder();
+std::vector<ll> task(size_t number_count, ll q, ll w, ll e, ll r, ll t);
 
 #endif //ARRAY_LIMIT
