@@ -1,4 +1,5 @@
-include_directories(../lib/googletest)
+include_directories(../lib/googletest
+    ${PROJECT_SOURCE_DIR}/alg_/algms)
 
 add_executable(run_basic_tests
     basic_check.cpp)
