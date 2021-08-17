@@ -1,18 +1,17 @@
-#include <task.hpp>
+#include <LIS_n^2.cpp>
 #include <gtest/gtest.h>
 
 struct BasicTestsFixture : testing::Test {
   std::vector<ll> check;
+  ll var{0};
 
   BasicTestsFixture() {
-    check = task(5, 0, 1, 2 ,3 , 4);
+	var = Solution::task({10, 9, 2, 5, 3, 7, 101, 18});
   }
 
-  ~BasicTestsFixture() = default;
+  ~BasicTestsFixture() override = default;
 };
 
-TEST_F(BasicTestsFixture, BasicTestsName) {
-  for(ll i = 1; i < 6; ++i) {
-	EXPECT_EQ(i, check[i]);
-  }
+TEST_F(BasicTestsFixture, Basic2TestsName) {
+  EXPECT_EQ(4, var);
 }
