@@ -29,7 +29,7 @@ ll LISBottomUp_algh(std::vector<ll>& A) {
 	   ++i) { // starts with the second element [1] (excluding overflowing of size_t (0 - 1))
 	D[i] = 1;
 	for (size_t j{0}; j <= i - 1; ++j) { // forgot <=; starts with first element [0]
-	  if (A[j] % A[i]  && D[j] + 1 > D[i]) { // if the number is less then me and it's LIS plus me (+1) bigger than mine
+	  if (A[j] < A[i]  && D[j] + 1 > D[i]) { // if the number is less then me and it's LIS plus me (+1) bigger than mine
 		D[i] = D[j] + 1; // mine LIS = his LIS plus me
 	  }
 	}

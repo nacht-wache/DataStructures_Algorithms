@@ -9,8 +9,11 @@
 
 using ll = long long;
 
-std::vector<ll> task_alg(const std::vector<ll>& numbers);
+struct Solution {
 
-std::vector<ll> task(size_t number_count, ll q, ll w, ll e, ll r, ll t);
+  static std::vector<ll> task_alg(const std::vector<ll>& numbers);
+
+  static std::vector<ll> task(size_t number_count, ll q, ll w, ll e, ll r, ll t);
+};
 
 #endif //ARRAY_LIMIT
