@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(test)
+project(program)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "--std=c++17")
 
 add_executable(${PROJECT_NAME} main.cpp)
 
@@ -10,9 +10,9 @@ add_subdirectory(alg_)
 
 target_include_directories(${PROJECT_NAME} PUBLIC alg_/algms)
 
-target_link_directories(${PROJECT_NAME} PRIVATE algms)
+target_link_directories(${PROJECT_NAME} PUBLIC algms)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC task)
+target_link_libraries(${PROJECT_NAME} PUBLIC algorithm)
 
 
 
