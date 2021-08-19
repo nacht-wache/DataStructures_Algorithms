@@ -50,10 +50,10 @@ void merge_sort(It begin, It end) {
   std::move(v.cbegin(), v.cend(), begin);
 }*/
 
-void merge(std::vector<int>& arr, iter begin, iter mid, iter end) {
+void merge(std::vector<int> &arr, iter begin, iter mid, iter end) {
   std::vector<int> result;;
   result.reserve(arr.size());
-  int i {0};
+  int i{0};
   while (begin <= mid && std::next(mid) <= end) {
 	if (*std::next(mid) < *begin) {
 	  result.push_back(*std::next(mid));
@@ -72,7 +72,7 @@ void merge(std::vector<int>& arr, iter begin, iter mid, iter end) {
 
 }
 
-void merge_sort(std::vector<int>& arr, iter begin, iter end) {
+void merge_sort(std::vector<int> &arr, iter begin, iter end) {
   if (begin < end) {
 	auto mid = begin;
 	std::advance(mid, (std::distance(begin, end) - 1) / 2);
@@ -82,18 +82,18 @@ void merge_sort(std::vector<int>& arr, iter begin, iter end) {
   }
 }
 
-int main(int argc, char* argv[]) {
-  size_t size {0};
+int main(int argc, char *argv[]) {
+  size_t size{0};
   std::cin >> size;
   std::vector<int> arr(size);
-  std::for_each(arr.begin(), arr.end(), [](int& y) {
+  std::for_each(arr.begin(), arr.end(), [](int &y) {
 	std::cin >> y;
   });
   auto start = std::chrono::steady_clock::now();
 
   merge_sort(arr, arr.begin(), std::prev(arr.end()));
 
-  for(auto i : arr) {
+  for (auto i : arr) {
 	std::cout << i << ' ';
   }
 

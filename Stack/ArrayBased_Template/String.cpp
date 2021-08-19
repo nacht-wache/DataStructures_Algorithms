@@ -3,24 +3,24 @@
 #include <memory>
 #include <algorithm>
 
-String::String(): str(new char[15]) {}
+String::String() : str(new char[15]) {}
 
 String::~String() {
   delete[] str;
 }
 
-String::String(const char* ch) {
+String::String(const char *ch) {
   this->reserve(15);
-  for(size_t i = 0; ch[i] != '\0'; ++i) {
-    if (sz == cap) {
-      reserve(2 * cap);
-    }
-    str[i] = ch[i];
-    ++sz;
+  for (size_t i = 0; ch[i] != '\0'; ++i) {
+	if (sz == cap) {
+	  reserve(2 * cap);
+	}
+	str[i] = ch[i];
+	++sz;
   }
 }
 
-String::String(const String& s): String(s.sz, 0) {
+String::String(const String &s) : String(s.sz, 0) {
   std::memcpy(str, s.str, s.sz);
 }
 
@@ -31,22 +31,21 @@ String::String(size_t sz, char ch) {
   cap = 2 * sz;
 }
 
-String::String(const std::initializer_list<char>& lst) {
+String::String(const std::initializer_list<char> &lst) {
   sz = lst.size();
   str = new char[sz];
   std::copy(lst.begin(), lst.end(), str);
 }
 
-
 void String::reserve(size_t n) {
   if (n < cap) { return; }
-  auto* new_s = new char[n];
+  auto *new_s = new char[n];
 
   try {
-    std::uninitialized_copy(str, str + sz, new_s);
+	std::uninitialized_copy(str, str + sz, new_s);
   } catch (...) {
-    delete[] new_s;
-    throw;
+	delete[] new_s;
+	throw;
   }
 
   this->~String();
@@ -66,7 +65,7 @@ size_t String::capacity() const {
   return cap;
 }
 
-char& String::operator[](size_t i) {
+char &String::operator[](size_t i) {
   return str[i];
 }
 
@@ -74,32 +73,32 @@ char String::operator[](size_t i) const {
   return str[i];
 }
 
-String& String::operator=(const String& s) {
+String &String::operator=(const String &s) {
   String new_s = s;
   swap(new_s);
 }
 
-std::ostream& operator<<(std::ostream& os, const String& s) {
-  for(size_t i = 0; i < s.size(); ++i) {
-    os << s[i];
+std::ostream &operator<<(std::ostream &os, const String &s) {
+  for (size_t i = 0; i < s.size(); ++i) {
+	os << s[i];
   }
   return os;
 }
 
-bool String::operator<(const String& s) {}
+bool String::operator<(const String &s) {}
 
 // copy-and-swap idiom
-String& String::swap(String& s) {
+String &String::swap(String &s) {
   std::swap(str, s.str);
   std::swap(sz, s.sz);
 }
 
-String::iterator& String::iterator::operator+=(int n) {
+String::iterator &String::iterator::operator+=(int n) {
   ptr += n;
   return *this;
 }
 
-String::iterator operator+(int n, String::iterator& iter) {
+String::iterator operator+(int n, String::iterator &iter) {
   return iter + n;
 }
 String::iterator String::iterator::operator+(int n) {
@@ -107,18 +106,18 @@ String::iterator String::iterator::operator+(int n) {
   copy += n;
   return copy;
 }
-char& String::iterator::operator*() {
+char &String::iterator::operator*() {
   return *ptr;
 }
 
-const char& String::iterator::operator*() const {
+const char &String::iterator::operator*() const {
   return *ptr;
 }
 
-char* String::iterator::operator->() {
+char *String::iterator::operator->() {
   return ptr;
 }
 
-char* String::iterator::operator->() const {
+char *String::iterator::operator->() const {
   return ptr;
 }

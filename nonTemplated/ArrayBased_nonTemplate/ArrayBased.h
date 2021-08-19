@@ -5,7 +5,7 @@
 
 class ArrayBased {
  private:
-  std::string* top = nullptr;
+  std::string *top = nullptr;
   size_t sz = 0;
   size_t top_pos = 0;
 

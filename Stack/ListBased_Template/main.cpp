@@ -13,7 +13,7 @@ int main() {
 	std::cout << string_stack.pop() << ' ';
 	string_stack.push("abc");
 	std::cout << string_stack.pop() << ' ';
-  } catch (const std::exception& e) {
+  } catch (const std::exception &e) {
 	std::cerr << e.what() << '\n';
   }
 }

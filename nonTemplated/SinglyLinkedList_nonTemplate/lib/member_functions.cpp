@@ -1,7 +1,7 @@
 #include "SinglyLinkedList.h"
 
 void SinglyLinkedList::insert(int key) {
-  Node* new_node = new Node(key, head);
+  Node *new_node = new Node(key, head);
   head = new_node;
 }
 
@@ -24,7 +24,7 @@ void SinglyLinkedList::del_val(int key) {
 	return;
   }
 
-  Node* ptr = head;
+  Node *ptr = head;
   if (head->prev != nullptr && head->key == key) { //delete head-key
 	head = head->prev;
 	delete ptr;
@@ -35,7 +35,7 @@ void SinglyLinkedList::del_val(int key) {
 	ptr = ptr->prev;                                        // to the Node with the key
   }
   if (ptr->prev != nullptr && ptr->prev->key == key) {        // standard search
-	Node* temp = ptr->prev->prev;                            // shirt-circuit evaluation used
+	Node *temp = ptr->prev->prev;                            // shirt-circuit evaluation used
 	delete ptr->prev;
 	ptr->prev = temp;
   } else if (head->key == key) {                            // single-Node list
@@ -44,11 +44,11 @@ void SinglyLinkedList::del_val(int key) {
   }
 }
 
-void SinglyLinkedList::del_ptr(Node* node) {
+void SinglyLinkedList::del_ptr(Node *node) {
   if (node == nullptr) {
 	throw std::runtime_error("UB: argument with 'nullptr' key in the del_ptr function");
   }
-  Node* ptr = head;
+  Node *ptr = head;
   if (head->prev != nullptr && head == node) {                // delete head-key
 	head = head->prev;
 	delete ptr;

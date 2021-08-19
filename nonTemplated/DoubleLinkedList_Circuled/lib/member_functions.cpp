@@ -4,15 +4,15 @@ bool List::empty() const {
   return sz == 0;
 }
 
-std::string& List::front() {
+std::string &List::front() {
   return head->value;
 }
 
-std::string& List::back() {
+std::string &List::back() {
   return tail->value;
 }
 
-size_t List::size() const{
+size_t List::size() const {
   return sz;
 }
 
@@ -26,11 +26,11 @@ void List::clear() {
   //  to call erase(list.begin(), list.end());
 }
 
-void List::insert(const std::string& s) {
+void List::insert(const std::string &s) {
   // iterator first
 }
 
-void List::erase(const std::string& s) {
+void List::erase(const std::string &s) {
   // iterator first
 }
 

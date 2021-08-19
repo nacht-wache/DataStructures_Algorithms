@@ -27,6 +27,6 @@ void merge_sort(It begin, It end) {
   merge_sort(begin, mid);
   merge_sort(mid, end);
 
-  auto&& v = merge(begin, mid, end);
+  auto &&v = merge(begin, mid, end);
   std::move(v.cbegin(), v.cend(), begin);
 }
