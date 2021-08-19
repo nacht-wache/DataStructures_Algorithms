@@ -4,27 +4,55 @@
 #include <algorithm>
 #include <cassert>
 #include <vector>
+#include <map>
 
 using ll = long long;
 
 struct Solution {
 
-  static ll foo(std::vector<ll>& nums) {
-	  ll ans {0};
-	  std::vector<ll> LIS;
-	  LIS.reserve(nums.size());
+  static std::vector<ll> foo(std::vector<ll> &nums) {
+	ll LIS_size{1};
+	std::vector<ll> LIS(nums.size(), INT64_MAX);
+	std::vector<ll> poses(nums.size(), INT64_MAX);
+	std::map<ll, std::pair<ll, std::vector<ll>>> counter;
 
-	  for(ll i : nums) {
-		auto it = lower_bound(LIS.begin(), LIS.end(), i);
-		*it = i;
-		ans = std::max(ans, static_cast<ll>(std::distance(LIS.begin(), it) + 1));
+	std::reverse(nums.begin(),nums.end());
+
+	for (auto iter = nums.begin(); iter != nums.end(); ++iter) {
+	  auto it = std::upper_bound(LIS.begin(), LIS.end(), *iter);
+	  LIS_size = std::max(LIS_size, static_cast<ll>(std::distance(LIS.begin(), it) + 1));
+
+	  auto offset_LIS = std::distance(LIS.begin(), it);
+	  auto offset_nums = std::distance(nums.begin(), iter) + 1;
+	  auto pos = poses.begin();
+	  std::advance(pos, offset_LIS);
+
+	  ++counter[*iter].first;
+	  counter[*iter].second.push_back(offset_nums);
+
+	  if (counter[*iter].first > LIS_size) {
+		std::fill_n(LIS.begin(), ++LIS_size, *iter);
+		std::copy_n(counter[*iter].second.begin(), LIS_size, poses.begin() + 1);
+		break;
 	  }
 
-	  return ans;
+	  if (offset_LIS + 1 == nums.size() || *std::next(pos) > offset_nums) {
+		*it = *iter;
+		*pos = offset_nums;
+	  }
+
+	}
+
+	std::vector<ll> answer;
+	answer.reserve(poses.size());
+	for (auto it = poses.begin(); it != poses.end() && *it != INT64_MAX; ++it) {
+	  answer.push_back(*it);
+	}
+
+	return answer;
   }
 
-
-  static std::vector<ll> task_alg(const std::vector<ll>& numbers) {
+  static std::vector<ll> task_alg(const std::vector<ll> &numbers) {
 	assert(numbers.size() < INT16_MAX);
 	std::vector<ll> result(1, INT64_MIN);
 	result.push_back(numbers[0]);
@@ -56,7 +84,7 @@ struct Solution {
 	}
 
 	std::vector<ll> to_return;
-	for (auto& i : dist_to_prev) {
+	for (auto &i : dist_to_prev) {
 	  if (i != -1) {
 		to_return.push_back(i);
 	  }
