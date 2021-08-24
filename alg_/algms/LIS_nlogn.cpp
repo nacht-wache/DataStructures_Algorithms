@@ -1,8 +1,4 @@
-#ifndef ARRAY_LIMIT
-#define ARRAY_LIMIT (10)
-
 #include <algorithm>
-#include <cassert>
 #include <vector>
 #include <map>
 
@@ -11,46 +7,49 @@ using ll = long long;
 struct Solution {
 
   static std::vector<ll> foo(std::vector<ll> &nums) {
-	ll LIS_size{1};
-	std::vector<ll> LIS(nums.size(), INT64_MAX);
-	std::vector<ll> poses(nums.size(), INT64_MAX);
-	std::map<ll, std::pair<ll, std::vector<ll>>> counter;
-
+	int LIS_size{1};
 	std::reverse(nums.begin(), nums.end());
 
-	for (auto iter = nums.begin(); iter != nums.end(); ++iter) {
-	  auto it = std::upper_bound(LIS.begin(), LIS.end(), *iter);
-	  LIS_size = std::max(LIS_size, static_cast<ll>(std::distance(LIS.begin(), it) + 1));
+	std::vector<ll> min_num(1, INT64_MIN);
+	min_num.resize(nums.size() + 1, INT64_MAX);
 
-	  auto offset_LIS = std::distance(LIS.begin(), it);
-	  auto offset_nums = std::distance(nums.begin(), iter) + 1;
-	  auto pos = poses.begin();
-	  std::advance(pos, offset_LIS);
+	std::vector<ll> poses(nums.size() + 1);
+	std::vector<ll> anc(nums.size() + 1, -1);
 
-	  ++counter[*iter].first;
-	  counter[*iter].second.push_back(offset_nums);
+	poses[0] = -1;
+	poses[1] = 1;
+	min_num[1] = nums[0];
 
-	  if (counter[*iter].first > LIS_size) {
-		std::fill_n(LIS.begin(), ++LIS_size, *iter);
-		std::copy_n(counter[*iter].second.begin(), LIS_size, poses.begin() + 1);
-		break;
+	for (auto iter = ++nums.begin(); iter != nums.end(); ++iter) {
+	  auto it_num = std::upper_bound(min_num.begin(), min_num.end(), *iter);
+	  LIS_size = std::max(LIS_size, static_cast<int>(std::distance(min_num.begin(), it_num) + 1));
+
+	  if (*std::prev(it_num) <= *it_num && *iter < *it_num) {
+		*it_num = *iter;
+
+		auto offset_min_num = std::distance(min_num.begin(), it_num);
+		auto offset_nums = std::distance(nums.begin(), iter) + 1;
+
+		auto offset_pos = poses.begin();
+		std::advance(offset_pos, offset_min_num);
+		*offset_pos = offset_nums;
+
+		auto offset_anc = anc.begin();
+		std::advance(offset_anc, offset_nums);
+		*offset_anc = *std::prev(offset_pos);
 	  }
-
-	  if (offset_LIS + 1 == nums.size() || *std::next(pos) > offset_nums) {
-		*it = *iter;
-		*pos = offset_nums;
-	  }
-
 	}
 
+	if (LIS_size == 1) return {1};
 	std::vector<ll> answer;
-	answer.reserve(poses.size());
-	for (auto it = poses.begin(); it != poses.end() && *it != INT64_MAX; ++it) {
-	  answer.push_back(*it);
+	answer.reserve(LIS_size);
+	ll pos = poses[LIS_size - 1];
+	answer.push_back(nums.size() + 1 - pos);
+	while (anc[pos] != -1) {
+	  answer.push_back(nums.size() + 1 - anc[pos]);
+	  pos = anc[pos];
 	}
 
 	return answer;
   }
 };
-
-#endif //ARRAY_LIMIT
