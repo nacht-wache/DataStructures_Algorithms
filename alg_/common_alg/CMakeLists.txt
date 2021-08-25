@@ -1,7 +1,3 @@
+set(COMMON_ALG "COMMON_ALG")
 
-set(${COMMON_SORTING_ALG}
-    LIS_nlogn)
-
-add_library(LIS_nlogn LIS_nlogn.cpp)
-
-include_directories(${PROJECT_SOURCE_DIR}/alg_/common_alg)
+add_library(COMMON_ALG STATIC LIS_nlogn.cpp)

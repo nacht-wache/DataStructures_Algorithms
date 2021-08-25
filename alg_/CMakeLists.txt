@@ -1,2 +1,3 @@
 add_subdirectory(common_alg)
+add_subdirectory(sorting_alg)
 add_subdirectory(alg_test)

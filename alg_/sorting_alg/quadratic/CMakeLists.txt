@@ -1,0 +1,1 @@
+add_library(quadratic insertion_sort.cpp)
