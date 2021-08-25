@@ -8,11 +8,12 @@ add_executable(${PROJECT_NAME} main.cpp)
 
 add_subdirectory(alg_)
 
-target_include_directories(${PROJECT_NAME} PUBLIC alg_/algms)
+target_include_directories(${PROJECT_NAME}
+    PUBLIC alg_/common_alg
+    PUBLIC alg_/sorting_alg)
 
-target_link_directories(${PROJECT_NAME} PUBLIC algms)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC algorithm)
+target_link_libraries(${PROJECT_NAME} PUBLIC ${COMMON_SORTING_ALG})
 
 
 

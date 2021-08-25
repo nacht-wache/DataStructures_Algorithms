@@ -1,2 +1,2 @@
-add_subdirectory(algms)
+add_subdirectory(common_alg)
 add_subdirectory(alg_test)
