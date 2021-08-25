@@ -17,7 +17,3 @@ void insertion_sort() {
 	std::cout << i << ' ';
   }
 }
-
-int main() {
-  insertion_sort();
-}
