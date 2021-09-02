@@ -39,6 +39,3 @@ cmake-build-debug-gcc
 
 #ConanBuild
 out
-
-# main.cpp
-main.cpp
