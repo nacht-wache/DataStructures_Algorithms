@@ -5,10 +5,10 @@
 using ll = long long;
 
 struct stl_solution {
-  void foo();
+  std::vector<ll> foo();
 
  private:
-  std::priority_queue<ll, std::vector<ll>, std::less<>> max_heap;
+  std::priority_queue<ll, std::vector<ll>, std::less<>> huffman_table;
   std::vector<ll> output;
 
  private:
@@ -18,14 +18,14 @@ struct stl_solution {
 };
 
 void stl_solution::extract_max() {
-  output.push_back(max_heap.top());
-  max_heap.pop();
+  output.push_back(huffman_table.top());
+  huffman_table.pop();
 }
 
 void stl_solution::insert() {
   ll x;
   std::cin >> x;
-  max_heap.push(x);
+  huffman_table.push(x);
 }
 
 bool stl_solution::is_insert(std::string &prompt) {
@@ -33,7 +33,7 @@ bool stl_solution::is_insert(std::string &prompt) {
   return prompt == "Insert";
 }
 
-void stl_solution::foo() {
+std::vector<ll> stl_solution::foo() {
   int n;
   std::cin >> n;
 
@@ -43,5 +43,6 @@ void stl_solution::foo() {
 	? insert()
 	: extract_max();
   }
+  return output;
 }
 
