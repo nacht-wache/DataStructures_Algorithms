@@ -42,7 +42,7 @@ unset(_expectedTargets)
 
 
 # Compute the installation prefix relative to this file.
-get_filename_component(_IMPORT_PREFIX "GTestTargets.cmake" PATH)
+get_filename_component(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_FILE}" PATH)
 get_filename_component(_IMPORT_PREFIX "${_IMPORT_PREFIX}" PATH)
 get_filename_component(_IMPORT_PREFIX "${_IMPORT_PREFIX}" PATH)
 get_filename_component(_IMPORT_PREFIX "${_IMPORT_PREFIX}" PATH)
@@ -84,7 +84,7 @@ set_target_properties(GTest::gmock_main PROPERTIES
 )
 
 # Load information for each installed configuration.
-get_filename_component(_DIR "GTestTargets.cmake" PATH)
+get_filename_component(_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
 file(GLOB CONFIG_FILES "${_DIR}/GTestTargets-*.cmake")
 foreach(f ${CONFIG_FILES})
   include(${f})
