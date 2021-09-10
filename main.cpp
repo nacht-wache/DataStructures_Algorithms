@@ -1,5 +1,5 @@
+#include <boost/algorithm/is_palindrome.hpp>
 #include <iostream>
-#include <LIS_nlogn.cpp>
 
 int main() {
 

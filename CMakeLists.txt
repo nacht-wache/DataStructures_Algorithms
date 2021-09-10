@@ -12,11 +12,18 @@ add_subdirectory(data_structures)
 add_subdirectory(lib/googletest)
 
 target_include_directories(${PROJECT_NAME}
-    PUBLIC alg_/common_alg
-    PUBLIC alg_/sorting_alg
-    PUBLIC data_structures/heap)
+        PUBLIC alg_/common_alg
+        PUBLIC alg_/sorting_alg
+        PUBLIC data_structures/heap
+        )
 
-target_link_libraries(${PROJECT_NAME} PUBLIC HEAP)
+execute_process(COMMAND conan install ${CMAKE_SOURCE_DIR} --build missing)
+
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup(TARGETS)
+
+target_link_libraries(${PROJECT_NAME}
+        PRIVATE HEAP CONAN_PKG::boost)
 
 
 
